@@ -1,0 +1,29 @@
+# MUST AI Pulse - Cursor Rules
+
+## Project Context
+Flutter web app: AI Readiness & Productivity Intelligence Platform for MUST Company.
+Aligns with strategic goals: VGTA metrics, AI adoption, prompt dissemination.
+
+## Architecture
+- **Clean feature-based structure**: Each feature in its own directory (landing, dashboard, assessment, etc.)
+- **Core layer**: Shared theme, constants, models, utils
+- **Shared widgets**: Reusable components (StatCard, etc.)
+- **Routing**: go_router with path-based URLs for web
+
+## Code Style
+- Use `plusJakartaSans` via Google Fonts for typography
+- Dark theme: bgDark (#0C1222), bgCard (#151D2E), primary (#0EA5E9)
+- Chart colors from AppTheme.chartColors
+- Responsive: LayoutBuilder for adaptive grids, respect maxWidth
+
+## Conventions
+- Feature pages: StatelessWidget unless state needed
+- Mock data in core/utils/mock_data.dart
+- All routes defined in main.dart
+- Use AppTheme constants for colors, never hardcode
+
+## Agent Architecture Notes (for CPO review)
+- **Code Planning**: Feature-first structure; each screen is self-contained
+- **SRE/Debug**: Clear separation of concerns; models in core/models
+- **Extensibility**: Add backend by replacing MockData with repository pattern
+- **Deployment**: Flutter web → build/web; Firebase Hosting or Vercel ready

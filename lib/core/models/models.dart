@@ -1,0 +1,86 @@
+import 'package:uuid/uuid.dart';
+
+const _uuid = Uuid();
+
+class VgtaMetric {
+  final String id;
+  final String teamName;
+  final String memberName;
+  final double value;
+  final double gpuUsage;
+  final int tokenCount;
+  final double headcount;
+  final DateTime period;
+
+  VgtaMetric({
+    String? id,
+    required this.teamName,
+    required this.memberName,
+    required this.value,
+    required this.gpuUsage,
+    required this.tokenCount,
+    required this.headcount,
+    required this.period,
+  }) : id = id ?? _uuid.v4();
+
+  double get vgtaScore {
+    final d = gpuUsage * tokenCount * headcount;
+    return d == 0 ? 0 : value / d;
+  }
+}
+
+class AssessmentResult {
+  final String id;
+  final String userName;
+  final String team;
+  final Map<String, double> categoryScores;
+  final double overallScore;
+  final DateTime completedAt;
+  final List<String> recommendations;
+
+  AssessmentResult({
+    String? id,
+    required this.userName,
+    required this.team,
+    required this.categoryScores,
+    required this.overallScore,
+    required this.completedAt,
+    required this.recommendations,
+  }) : id = id ?? _uuid.v4();
+
+  String get skillLevel {
+    if (overallScore >= 90) return 'AI Native';
+    if (overallScore >= 75) return 'Expert';
+    if (overallScore >= 60) return 'Advanced';
+    if (overallScore >= 40) return 'Intermediate';
+    if (overallScore >= 20) return 'Novice';
+    return 'Beginner';
+  }
+}
+
+class PromptEntry {
+  final String id;
+  final String title;
+  final String content;
+  final String category;
+  final String author;
+  final String team;
+  final int rating;
+  final int usageCount;
+  final DateTime createdAt;
+  final List<String> tags;
+
+  PromptEntry({
+    String? id,
+    required this.title,
+    required this.content,
+    required this.category,
+    required this.author,
+    required this.team,
+    this.rating = 0,
+    this.usageCount = 0,
+    DateTime? createdAt,
+    this.tags = const [],
+  })  : id = id ?? _uuid.v4(),
+        createdAt = createdAt ?? DateTime.now();
+}
