@@ -150,9 +150,9 @@ class AssessmentPage extends StatelessWidget {
                     fillColor: AppTheme.primary.withValues(alpha: 0.2),
                     borderColor: AppTheme.primary,
                     borderWidth: 2,
-                    dataEntries: categories
-                        .map((e) => RadarEntry(value: e.value / 100))
-                        .toList(),
+                    dataEntries: List<RadarEntry>.from(
+                      categories.map((e) => RadarEntry(value: e.value / 100)),
+                    ),
                   ),
                 ],
                 radarShape: RadarShape.polygon,

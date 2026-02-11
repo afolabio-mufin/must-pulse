@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
+import 'core/models/models.dart';
 import 'core/theme/app_theme.dart';
 import 'features/analytics/analytics_page.dart';
 import 'features/assessment/assessment_page.dart';
 import 'features/calculator/calculator_page.dart';
 import 'features/dashboard/dashboard_page.dart';
 import 'features/landing/landing_page.dart';
+import 'features/prompt_vault/prompt_detail_page.dart';
 import 'features/prompt_vault/prompt_vault_page.dart';
 
 void main() {
@@ -35,6 +37,16 @@ final _router = GoRouter(
     GoRoute(path: '/dashboard', builder: (_, __) => const DashboardPage()),
     GoRoute(path: '/assessment', builder: (_, __) => const AssessmentPage()),
     GoRoute(path: '/prompts', builder: (_, __) => const PromptVaultPage()),
+    GoRoute(
+      path: '/prompts/detail',
+      builder: (_, state) {
+        final prompt = state.extra is PromptEntry
+            ? state.extra! as PromptEntry
+            : null;
+        if (prompt == null) return const PromptVaultPage();
+        return PromptDetailPage(prompt: prompt);
+      },
+    ),
     GoRoute(path: '/analytics', builder: (_, __) => const AnalyticsPage()),
     GoRoute(path: '/calculator', builder: (_, __) => const CalculatorPage()),
   ],

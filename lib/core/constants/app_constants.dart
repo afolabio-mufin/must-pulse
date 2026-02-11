@@ -23,6 +23,11 @@ class AppConstants {
   static const List<String> promptCategories = [
     'Cursor Rules',
     'Agent Architecture',
+    'Planning Agent',
+    'Debugger Agent',
+    'QA Agent',
+    'Design Agent',
+    'Code Review Agent',
     'Code Generation',
     'Debugging',
     'Code Review',
@@ -30,6 +35,15 @@ class AppConstants {
     'Documentation',
     'Refactoring',
     'DevOps',
+  ];
+
+  /// Predefined agent types for the Agent Library (Prompt Vault).
+  static const List<String> agentTypes = [
+    'Planning Agent',
+    'Debugger Agent',
+    'QA Agent',
+    'Design Agent',
+    'Code Review Agent',
   ];
 
   static const List<String> teams = [

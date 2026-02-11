@@ -83,4 +83,14 @@ class PromptEntry {
     this.tags = const [],
   })  : id = id ?? _uuid.v4(),
         createdAt = createdAt ?? DateTime.now();
+
+  /// Word count for prompt analysis.
+  int get wordCount =>
+      content.trim().isEmpty ? 0 : content.trim().split(RegExp(r'\s+')).length;
+
+  /// Rough token estimate (~4 chars per token for English/mixed content).
+  int get estimatedTokens => (content.length / 4).ceil();
+
+  /// Whether this prompt is longer than 500 tokens (consider splitting for some models).
+  bool get isLongForm => estimatedTokens > 500;
 }

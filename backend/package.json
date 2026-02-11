@@ -1,0 +1,14 @@
+{
+  "name": "must-ai-pulse-api",
+  "version": "1.0.0",
+  "description": "Example backend for MUST AI Pulse - receive data from Cursor/IDE and serve to web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
