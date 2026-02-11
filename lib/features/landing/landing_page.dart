@@ -120,7 +120,7 @@ class LandingPage extends StatelessWidget {
           'Measure team AI readiness'),
       ('Prompt Vault', Icons.library_books_rounded, '/prompts',
           'Shared cursor rules & prompts'),
-      ('Agent Library', Icons.smart_toy_rounded, '/prompts',
+      ('Agent Library', Icons.smart_toy_rounded, '/agent-library',
           'Planning, Debugger, QA, Design & Code Review agents'),
       ('Team Analytics', Icons.analytics_rounded, '/analytics',
           'AI adoption insights'),

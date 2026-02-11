@@ -94,3 +94,49 @@ class PromptEntry {
   /// Whether this prompt is longer than 500 tokens (consider splitting for some models).
   bool get isLongForm => estimatedTokens > 500;
 }
+
+/// Agent Library entry: dedicated AI agents (Planning, Debugger, QA, Design, etc.)
+class AgentLibraryEntry {
+  final String id;
+  final String name;
+  final String slug;
+  final String shortDescription;
+  final String fullDescription;
+  final String category; // Planning, Debugger, QA, Design, Code Review, Security, etc.
+  final List<String> capabilities;
+  final List<String> integrations; // Cursor, Copilot, Slack, etc.
+  final String author;
+  final String ownerTeam;
+  final double rating;
+  final int usageCount;
+  final int adoptionCount; // teams/members using this agent
+  final DateTime createdAt;
+  final DateTime? updatedAt;
+  final String version;
+  final List<String> tags;
+  final String promptBody; // Full system prompt / instructions
+  final Map<String, String> examples; // scenario -> example output
+
+  AgentLibraryEntry({
+    String? id,
+    required this.name,
+    required this.slug,
+    required this.shortDescription,
+    required this.fullDescription,
+    required this.category,
+    this.capabilities = const [],
+    this.integrations = const [],
+    required this.author,
+    required this.ownerTeam,
+    this.rating = 0,
+    this.usageCount = 0,
+    this.adoptionCount = 0,
+    DateTime? createdAt,
+    this.updatedAt,
+    this.version = '1.0.0',
+    this.tags = const [],
+    this.promptBody = '',
+    this.examples = const {},
+  })  : id = id ?? _uuid.v4(),
+        createdAt = createdAt ?? DateTime.now();
+}

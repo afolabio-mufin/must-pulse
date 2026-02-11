@@ -3,6 +3,8 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
 import 'core/models/models.dart';
 import 'core/theme/app_theme.dart';
+import 'features/agent_library/agent_library_detail_page.dart';
+import 'features/agent_library/agent_library_page.dart';
 import 'features/analytics/analytics_page.dart';
 import 'features/assessment/assessment_page.dart';
 import 'features/calculator/calculator_page.dart';
@@ -45,6 +47,20 @@ final _router = GoRouter(
             : null;
         if (prompt == null) return const PromptVaultPage();
         return PromptDetailPage(prompt: prompt);
+      },
+    ),
+    GoRoute(
+      path: '/agent-library',
+      builder: (_, __) => const AgentLibraryPage(),
+    ),
+    GoRoute(
+      path: '/agent-library/detail',
+      builder: (_, state) {
+        final agent = state.extra is AgentLibraryEntry
+            ? state.extra! as AgentLibraryEntry
+            : null;
+        if (agent == null) return const AgentLibraryPage();
+        return AgentLibraryDetailPage(agent: agent);
       },
     ),
     GoRoute(path: '/analytics', builder: (_, __) => const AnalyticsPage()),

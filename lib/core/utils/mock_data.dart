@@ -33,8 +33,9 @@ class MockData {
       ];
 
   static List<AssessmentResult> get assessmentResults => [
+        // Individuals – multiple members across teams
         AssessmentResult(
-          userName: 'Global Frontend',
+          userName: 'Alex Chen',
           team: 'Global Frontend',
           categoryScores: {
             'AI Code Generation': 78.0,
@@ -43,11 +44,108 @@ class MockData {
             'Cursor/Copilot Mastery': 82.0,
           },
           overallScore: 74.0,
-          completedAt: DateTime.now(),
+          completedAt: DateTime.now().subtract(const Duration(days: 2)),
           recommendations: [
             'Explore advanced agent patterns',
             'Share cursor rules in Prompt Vault',
           ],
+        ),
+        AssessmentResult(
+          userName: 'Jordan Lee',
+          team: 'Global Frontend',
+          categoryScores: {
+            'AI Code Generation': 88.0,
+            'Prompt Engineering': 85.0,
+            'Agent Architecture': 72.0,
+            'Cursor/Copilot Mastery': 90.0,
+          },
+          overallScore: 84.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 5)),
+          recommendations: ['Mentor others on agent architecture'],
+        ),
+        AssessmentResult(
+          userName: 'Sam Rivera',
+          team: 'Global Frontend',
+          categoryScores: {
+            'AI Code Generation': 62.0,
+            'Prompt Engineering': 58.0,
+            'Agent Architecture': 45.0,
+            'Cursor/Copilot Mastery': 68.0,
+          },
+          overallScore: 58.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 1)),
+          recommendations: [
+            'Complete Prompt Engineering module',
+            'Try Debugger Agent from Agent Library',
+          ],
+        ),
+        AssessmentResult(
+          userName: 'Morgan Taylor',
+          team: 'Global Backend',
+          categoryScores: {
+            'AI Code Generation': 92.0,
+            'Prompt Engineering': 88.0,
+            'Agent Architecture': 85.0,
+            'Cursor/Copilot Mastery': 94.0,
+          },
+          overallScore: 90.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 3)),
+          recommendations: ['Lead agent adoption in your team'],
+        ),
+        AssessmentResult(
+          userName: 'Casey Kim',
+          team: 'Global Backend',
+          categoryScores: {
+            'AI Code Generation': 71.0,
+            'Prompt Engineering': 68.0,
+            'Agent Architecture': 55.0,
+            'Cursor/Copilot Mastery': 75.0,
+          },
+          overallScore: 67.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 7)),
+          recommendations: ['Use QA Agent for test design'],
+        ),
+        AssessmentResult(
+          userName: 'Riley Park',
+          team: 'Korea Mobile',
+          categoryScores: {
+            'AI Code Generation': 80.0,
+            'Prompt Engineering': 76.0,
+            'Agent Architecture': 70.0,
+            'Cursor/Copilot Mastery': 82.0,
+          },
+          overallScore: 77.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 4)),
+          recommendations: ['Try Design Agent for UI consistency'],
+        ),
+        AssessmentResult(
+          userName: 'Quinn Davis',
+          team: 'Korea Mobile',
+          categoryScores: {
+            'AI Code Generation': 45.0,
+            'Prompt Engineering': 42.0,
+            'Agent Architecture': 38.0,
+            'Cursor/Copilot Mastery': 52.0,
+          },
+          overallScore: 44.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 10)),
+          recommendations: [
+            'Start with Cursor basics course',
+            'Use Planning Agent for task breakdown',
+          ],
+        ),
+        AssessmentResult(
+          userName: 'Devon Wright',
+          team: 'DevOps',
+          categoryScores: {
+            'AI Code Generation': 85.0,
+            'Prompt Engineering': 82.0,
+            'Agent Architecture': 88.0,
+            'Cursor/Copilot Mastery': 86.0,
+          },
+          overallScore: 85.0,
+          completedAt: DateTime.now().subtract(const Duration(days: 1)),
+          recommendations: ['Contribute a runbook agent to the library'],
         ),
       ];
 
@@ -443,6 +541,241 @@ In code: check flag once per request/flow; avoid branching on the same flag in m
           rating: 4,
           usageCount: 33,
           tags: ['feature-flag', 'rollout', 'devops', 'release'],
+        ),
+      ];
+
+  /// Agent Library: dedicated AI agents (separate from Prompt Vault)
+  static List<AgentLibraryEntry> get agentLibraryEntries => [
+        AgentLibraryEntry(
+          name: 'Planning Agent',
+          slug: 'planning-agent',
+          shortDescription:
+              'Turns product and engineering goals into actionable plans, milestones, and backlogs.',
+          fullDescription:
+              'The Planning Agent breaks down high-level objectives into clear tasks, dependencies, and acceptance criteria. It proposes sequencing, calls out risks and resource needs, and can output epics, stories, and timeline suggestions.',
+          category: 'Planning',
+          capabilities: [
+            'Goal decomposition',
+            'Dependency mapping',
+            'Backlog generation',
+            'Risk and assumption tracking',
+            'Acceptance criteria',
+          ],
+          integrations: ['Cursor', 'Slack', 'Jira', 'Linear'],
+          author: 'Product',
+          ownerTeam: 'Product',
+          rating: 4.8,
+          usageCount: 340,
+          adoptionCount: 12,
+          version: '2.1.0',
+          tags: ['planning', 'roadmap', 'backlog', 'mvp'],
+          promptBody: 'You are a Planning Agent. Break down goals into actionable plans.',
+          examples: {
+            'Feature request': 'Epic → Stories with estimates and dependencies',
+            'Sprint goal': 'Ordered backlog with acceptance criteria',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Debugger Agent',
+          slug: 'debugger-agent',
+          shortDescription:
+              'Diagnoses failures from stack traces and logs, isolates root cause, and proposes minimal fixes.',
+          fullDescription:
+              'The Debugger Agent reproduces failures, isolates the failing component, explains root cause, and suggests minimal code or config changes with regression test ideas. Built for SRE and dev workflows.',
+          category: 'Debugging',
+          capabilities: [
+            'Stack trace analysis',
+            'Root cause isolation',
+            'Minimal fix suggestions',
+            'Regression test ideas',
+            'Log correlation',
+          ],
+          integrations: ['Cursor', 'GitHub', 'Datadog', 'PagerDuty'],
+          author: 'DevOps',
+          ownerTeam: 'DevOps',
+          rating: 4.9,
+          usageCount: 410,
+          adoptionCount: 15,
+          version: '2.0.0',
+          tags: ['debugging', 'sre', 'troubleshooting', 'incident'],
+          promptBody: 'You are a Debugger Agent. Diagnose failures and propose fixes.',
+          examples: {
+            'Stack trace': 'Root cause + minimal patch + test suggestion',
+            'Flaky test': 'Hypotheses and how to confirm each',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'QA Agent',
+          slug: 'qa-agent',
+          shortDescription:
+              'Designs test cases, suggests unit/integration/E2E coverage, and reviews PRs for test quality.',
+          fullDescription:
+              'The QA Agent creates test scenarios from specs or code, recommends frameworks and fixtures, and reviews PRs for coverage and flakiness. Outputs test plans and example test code.',
+          category: 'Quality',
+          capabilities: [
+            'Test scenario design',
+            'Unit / integration / E2E suggestions',
+            'PR test coverage review',
+            'Test data and fixtures',
+            'Acceptance checklists',
+          ],
+          integrations: ['Cursor', 'GitHub', 'Jest', 'pytest', 'Flutter test'],
+          author: 'QA',
+          ownerTeam: 'QA',
+          rating: 4.7,
+          usageCount: 280,
+          adoptionCount: 10,
+          version: '1.8.0',
+          tags: ['qa', 'testing', 'coverage', 'quality'],
+          promptBody: 'You are a QA Agent. Ensure quality through test design and coverage.',
+          examples: {
+            'Feature spec': 'Test scenarios + example Jest/pytest code',
+            'Code diff': 'Missing edge cases and suggested tests',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Design Agent',
+          slug: 'design-agent',
+          shortDescription:
+              'Supports UI/UX consistency, accessibility, and design-system alignment from requirements.',
+          fullDescription:
+              'The Design Agent proposes component structure, layout, and interaction patterns. It suggests a11y and responsive behavior, design tokens, and copy for buttons and empty states.',
+          category: 'Design',
+          capabilities: [
+            'Component hierarchy',
+            'Accessibility (a11y)',
+            'Design system alignment',
+            'Responsive behavior',
+            'Microcopy',
+          ],
+          integrations: ['Cursor', 'Figma', 'Storybook'],
+          author: 'Design',
+          ownerTeam: 'Product',
+          rating: 4.6,
+          usageCount: 220,
+          adoptionCount: 8,
+          version: '1.5.0',
+          tags: ['design', 'ui', 'ux', 'accessibility', 'a11y'],
+          promptBody: 'You are a Design Agent. Support UI/UX and design-system consistency.',
+          examples: {
+            'Screen description': 'Component tree + props + a11y notes',
+            'New feature': 'Wireframe description + do\'s and don\'ts',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Code Review Agent',
+          slug: 'code-review-agent',
+          shortDescription:
+              'Reviews code for correctness, style, security, and test coverage with structured feedback.',
+          fullDescription:
+              'The Code Review Agent provides approve/comment/request-changes with severity-ranked findings, security and edge-case checks, and concrete patch suggestions. Integrates with PR workflows.',
+          category: 'Code Review',
+          capabilities: [
+            'Logic and edge cases',
+            'Style and conventions',
+            'Security and error handling',
+            'Test coverage',
+            'Structured review output',
+          ],
+          integrations: ['Cursor', 'GitHub', 'GitLab', 'Bitbucket'],
+          author: 'Dev Team',
+          ownerTeam: 'Global Frontend',
+          rating: 4.9,
+          usageCount: 560,
+          adoptionCount: 18,
+          version: '2.2.0',
+          tags: ['code-review', 'pr', 'quality', 'security'],
+          promptBody: 'You are a Code Review Agent. Review for correctness, style, and maintainability.',
+          examples: {
+            'PR diff': 'Summary + findings with severity + suggestions',
+            'Security review': 'Auth, injection, secrets, CVEs',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Security Audit Agent',
+          slug: 'security-audit-agent',
+          shortDescription:
+              'Audits code and design for vulnerabilities: injection, auth, secrets, crypto, and dependencies.',
+          fullDescription:
+              'The Security Audit Agent checks input validation, auth/authz, secrets handling, crypto, and dependency CVEs. Outputs prioritized findings with severity and remediation.',
+          category: 'Security',
+          capabilities: [
+            'Input validation (injection, XSS)',
+            'Auth and access control',
+            'Secrets and logging',
+            'Crypto and TLS',
+            'Dependency CVEs',
+          ],
+          integrations: ['Cursor', 'GitHub', 'Snyk'],
+          author: 'Security',
+          ownerTeam: 'DevOps',
+          rating: 4.8,
+          usageCount: 190,
+          adoptionCount: 7,
+          version: '1.4.0',
+          tags: ['security', 'audit', 'compliance', 'cve'],
+          promptBody: 'You are a Security Audit Agent. Find and prioritize security issues.',
+          examples: {
+            'API design': 'IDOR, injection, rate limit recommendations',
+            'Code snippet': 'Secrets, auth bypass, crypto issues',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Performance Review Agent',
+          slug: 'performance-review-agent',
+          shortDescription:
+              'Identifies bottlenecks, caching gaps, and observability needs in code and architecture.',
+          fullDescription:
+              'The Performance Review Agent analyzes N+1 queries, payload size, caching, frontend bundle and re-renders, backend pooling and timeouts. Outputs impact-ranked recommendations.',
+          category: 'Performance',
+          capabilities: [
+            'Bottleneck analysis',
+            'Caching strategy',
+            'Frontend performance',
+            'Backend tuning',
+            'Observability',
+          ],
+          integrations: ['Cursor', 'Datadog', 'Lighthouse'],
+          author: 'DevOps',
+          ownerTeam: 'Global Backend',
+          rating: 4.5,
+          usageCount: 240,
+          adoptionCount: 9,
+          version: '1.3.0',
+          tags: ['performance', 'optimization', 'sre'],
+          promptBody: 'You are a Performance Review Agent. Find performance issues and suggest fixes.',
+          examples: {
+            'Service code': 'N+1, cache, timeouts',
+            'Frontend bundle': 'Lazy load, re-render, layout',
+          },
+        ),
+        AgentLibraryEntry(
+          name: 'Release Notes Agent',
+          slug: 'release-notes-agent',
+          shortDescription:
+              'Generates user-facing release notes and changelogs from PRs and commits.',
+          fullDescription:
+              'The Release Notes Agent turns PR/commit lists into structured Added/Changed/Fixed/Security sections with migration hints and audience-appropriate language.',
+          category: 'Documentation',
+          capabilities: [
+            'Changelog generation',
+            'Version formatting',
+            'Migration steps',
+            'Security section',
+          ],
+          integrations: ['Cursor', 'GitHub', 'Slack'],
+          author: 'Product',
+          ownerTeam: 'Product',
+          rating: 4.7,
+          usageCount: 310,
+          adoptionCount: 11,
+          version: '1.2.0',
+          tags: ['release-notes', 'changelog', 'documentation'],
+          promptBody: 'You are a Release Notes Agent. Generate release notes from PRs/commits.',
+          examples: {
+            'PR list': 'Added / Changed / Fixed / Security sections',
+            'Breaking change': 'Migration steps and timeline',
+          },
         ),
       ];
 }
